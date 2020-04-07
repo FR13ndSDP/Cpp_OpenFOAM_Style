@@ -1,0 +1,52 @@
+/*--------------------------------*- C++ -*----------------------------------*\
+| =========                 |                                                 |
+| \\      /  F ield         | OpenFOAM: The Open Source CFD Toolbox           |
+|  \\    /   O peration     | Version:  v1912                                 |
+|   \\  /    A nd           | Website:  www.openfoam.com                      |
+|    \\/     M anipulation  |                                                 |
+\*---------------------------------------------------------------------------*/
+FoamFile
+{
+    version     2.0;
+    format      ascii;
+    class       dictionary;
+    location    "system";
+    object      fvSchemes;
+}
+// * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
+// 时间一阶导格式
+ddtSchemes
+{
+    default         Euler; // 一阶精度，有界，隐式
+}
+// 梯度项格式
+gradSchemes
+{
+    default         Gauss linear; // 高斯积分<插值格式> 二阶精度
+    grad(T)         Gauss linear;
+}
+// 散度项格式
+divSchemes
+{
+    default         none;
+}
+// 拉普拉斯项格式
+laplacianSchemes
+{
+    default         none;
+    laplacian(DT,T) Gauss linear corrected; // Gauss <插值格式> <面法向梯度格式>
+}
+// 插值格式
+interpolationSchemes
+{
+    default         linear;
+}
+
+// 面法向梯度格式
+snGradSchemes
+{
+    default         corrected;
+}
+
+
+// ************************************************************************* //

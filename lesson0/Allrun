@@ -1,0 +1,7 @@
+#!/bin/bash
+
+g++ -std=c++11 -o myClassApp hello.C
+
+./myClassApp
+
+rm myClassApp

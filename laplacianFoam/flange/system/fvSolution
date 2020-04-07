@@ -1,0 +1,37 @@
+/*--------------------------------*- C++ -*----------------------------------*\
+| =========                 |                                                 |
+| \\      /  F ield         | OpenFOAM: The Open Source CFD Toolbox           |
+|  \\    /   O peration     | Version:  v1912                                 |
+|   \\  /    A nd           | Website:  www.openfoam.com                      |
+|    \\/     M anipulation  |                                                 |
+\*---------------------------------------------------------------------------*/
+FoamFile
+{
+    version     2.0;
+    format      ascii;
+    class       dictionary;
+    location    "system";
+    object      fvSolution;
+}
+// * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
+
+solvers
+{
+    T
+    {
+        solver          PCG; // 求解器 预处理共轭梯度求解器
+        // 预处理器本质上为一个改变原先系数矩阵条件数的左乘矩阵
+        preconditioner  DIC; // 预处理器 不完全的对角Cholesky预处理器
+        // 收敛准则
+        tolerance       1e-06; // 残差
+        relTol          0; // 相对残差
+    }
+}
+// 耦合算法
+SIMPLE
+{
+    nNonOrthogonalCorrectors 0; // 非正交修正次数（不进行）
+}
+
+
+// ************************************************************************* //
